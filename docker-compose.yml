@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+
+  flask:
+    build: ./application
+    container_name: face_compare_app
+    restart: always
+    environment:
+      - APP_NAME=face_compare_app
+    expose:
+      - 8080
+
+  nginx:
+    build: ./proxy_service
+    container_name: nginx
+    restart: always
+    ports:
+      - "10000:80"
